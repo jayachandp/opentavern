@@ -102,9 +102,10 @@ def create_group(request, template='create_group.html'):
     form = CreateGroupForm()
     if request.method == 'POST':
         form = CreateGroupForm(request.POST)
-        if form.is_valid:
+        if form.is_valid():
             group = form.save(commit=False)
             group.creator = request.user
+            group.organizers = request.user
             group.save()
             Member.objects.create(user=request.user,
                                   tavern_group=group,
@@ -127,7 +128,7 @@ def create_event(request, template='create_event.html'):
     form = CreateEventForm()
     if request.method == 'POST':
         form = CreateEventForm(request.POST)
-        if form.is_valid:
+        if form.is_valid():
             event = form.save(commit=False)
             event.creator = request.user
             event.save()
