@@ -16,4 +16,3 @@ class CreateEventForm(ModelForm):
     class Meta:
         model = Event
         exclude = ['creator']
-
