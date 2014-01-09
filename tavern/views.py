@@ -132,7 +132,7 @@ def create_event(request, template='create_event.html'):
             event = form.save(commit=False)
             event.creator = request.user
             event.save()
-            return redirect("group_details")
+            return redirect("/events/%d" % event.id)
 
     context = {'form': form}
     return render(request, template, context)
